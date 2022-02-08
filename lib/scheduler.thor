@@ -1,19 +1,19 @@
 require 'fileutils'
 
 class MyCLI < Thor
-  desc "add NAME", "add contacts to our csv file"
+  desc "add NAME", "add contacts to our txt file"
   def add(name)
     File.open("../files/contacts.txt", "a"){
       |f| f.write "#{name}\n"
     }
   end
 
-  desc "read FILE", "load contacts from our contact.csv"
+  desc "read FILE", "load contacts from our contacts.txt"
   def list()
-    puts File.read("../files/contacts.csv")
+    puts File.read("../files/contacts.txt")
   end
 
-  desc "delete NAME", "delete contacts from our contact.csv"
+  desc "delete NAME", "delete contacts from our contact.txt"
   def delete(name)
 
     open('../files/contacts.txt', 'r') do |f|
