@@ -5,38 +5,54 @@ require 'csv'
 
 class MyCLI < Thor
 
+  # não deixar repetir contato.
+  # retornar o nome do contato e email em search.
+  # deletar contato
 
-  desc "add NAME, EMAIL", "add contacts to our txt file"
-  def add_contact(name, email)
-
-    CSV.open('../files/contacts.csv', 'w') << %w(nome email)
-
-    contact = Contacts.new(name: name, email: email)
-    puts contact.name
-    puts contact.email
-
-    CSV.open('../files/contacts.csv', "a+") do |csv|
-      csv << {name: contact.name, email: contact.email}
+  desc "start", "add headers to our csv file"
+  def start_agenda()
+    headers = ['nome','email']
+    CSV.open('../files/contacts.csv', 'a+') do |csv|
+      csv << headers if csv.count.eql? 0 
     end
-
   end
-
-  # desc "list", "load contacts from our contacts.txt"
-  # def list_contacts()
-  #   CSV.read("../files/contacts.csv")
-  # end
-
-  # desc "search NAME", "search a contact using the contact name"
-  # def search_contact_by_name(name)
-  #   csv = CSV.read( "../files/contacts.csv", header: true )
-
-  #   puts csv.find {|row| row['NAME'] == 'Tom'} #=> returns first `row` that satisfies the block.
-  # end
   
 
+  desc "add NAME, EMAIL", "add contacts to our csv file"
+  def add_contact(name, email)
+    contact = Contacts.new(name: name, email: email)
+    CSV.open('../files/contacts.csv', "a+") do |csv|
+      # if csv.include? contact.name
+      #   csv << [contact.name, contact.email] 
+      # else
+      #   puts "Contato já adicionado"
+      # end
+      csv << [contact.name, contact.email] 
+    end
+  end
 
+  desc "search NAME", "search a contact using the contact name"
+  def search_contact(name)
+    contact = Contacts.new(name: name)
+    csv = CSV.parse(File.read("../files/contacts.csv"), headers: true)
+    if (csv.find {|row| row["nome"] == contact.name})
+      puts "User found"
+      puts contact.name 
+    else
+      puts "User not found"
+    end
+  end
 
+  desc "delete NAME", "deleta a contact using the contact name"
+  def delete_contact(name)
+    contact = Contacts.new(name: name)
+    csv = CSV.parse(File.read("../files/contacts.csv"), headers: true)
 
+    csv.delete_if do |row| 
+      row["nome"] == contact.name
+    end
+    
+  end
 
   
 end
