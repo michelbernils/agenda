@@ -11,7 +11,7 @@ class MyCLI < Thor
 
   desc "start", "add headers to our csv file"
   def start_agenda()
-    headers = ['nome','email']
+    headers = ['name','email']
     CSV.open('../files/contacts.csv', 'a+') do |csv|
       csv << headers if csv.count.eql? 0 
     end
@@ -35,7 +35,7 @@ class MyCLI < Thor
   def search_contact(name)
     contact = Contacts.new(name: name)
     csv = CSV.parse(File.read("../files/contacts.csv"), headers: true)
-    if (csv.find {|row| row["nome"] == contact.name})
+    if (csv.find {|row| row["name"] == contact.name})
       puts "User found"
       puts contact.name 
     else
@@ -45,13 +45,18 @@ class MyCLI < Thor
 
   desc "delete NAME", "deleta a contact using the contact name"
   def delete_contact(name)
-    contact = Contacts.new(name: name)
-    csv = CSV.parse(File.read("../files/contacts.csv"), headers: true)
 
-    csv.delete_if do |row| 
-      row["nome"] == contact.name
+    contact = Contacts.new(name: name)    
+    table = CSV.table("../files/contacts.csv")
+    table.delete_if do |row|
+      row[:name] == contact.name
     end
-    
+
+    File.open("../files/contacts.csv", 'w') do |f|
+      f.write(table.to_csv)
+    end
+
+
   end
 
   
