@@ -5,10 +5,6 @@ require 'csv'
 
 class MyCLI < Thor
 
-  # não deixar repetir contato.
-  # retornar o nome do contato e email em search.
-  # deletar contato
-
   desc "start", "add headers to our csv file"
   def start_agenda()
     headers = ['name','email']
