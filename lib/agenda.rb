@@ -1,5 +1,6 @@
 require_relative '../lib/contacts'
 require 'fileutils'
+require 'thor'
 require 'csv'
 
 
@@ -51,7 +52,6 @@ class MyCLI < Thor
     File.open("../files/contacts.csv", 'w') do |f|
       f.write(table.to_csv)
     end
-
 
   end
 
