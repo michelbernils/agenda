@@ -1,6 +1,7 @@
 require "minitest/autorun"
 require 'csv'
 require_relative '../lib/contacts'
+require_relative '../lib/agenda'
 
 
 #TODOS: 
@@ -10,24 +11,9 @@ class AgendaTest < Minitest::Test
     def test_add_info
 
         contact = Contacts.new(name: 'michel', email: 'bernils.michel@gmail.com')
+        add_contact(contact.name, contact.email)
+        table = CSV.parse(File.read("../files/contacts.csv"), headers: true)
 
-        header = ["name","email"]
-
-        CSV.open("../files/contacts_test.csv","a") do |csv|
-            row = CSV::Row.new(header,[])
-            row["name"] = contact.name
-            row["email"] = contact.email
-            csv << row
-        end
-
-
-        # CSV.open('../files/contacts_test.csv', "a+") do |csv|
-        #     
-        # end
-
-        actual_csv = File.open('../files/contacts.csv').read
-        expected_csv = File.open('../files/contacts_test.csv').read
-
-        assert_equal actual_csv, expected_csv
+        assert_equal table.first.to_h, ["nome"=> contact.name, "email"=> contact.email]
     end
 end
