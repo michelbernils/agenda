@@ -1,15 +1,18 @@
 require_relative '../lib/contacts'
 require 'fileutils'
-require 'thor'
 require 'csv'
+require 'thor'
+require 'byebug'
 
 
-class MyCLI < Thor
+
+class Agenda < Thor
 
   desc "start", "add headers to our csv file"
-  def start_agenda()
+  def start_agenda(file_path = '../files/contacts.csv')
+    @file_path = file_path
     headers = ['name','email']
-    CSV.open('../files/contacts.csv', 'a+') do |csv|
+    CSV.open(@file_path, 'a+') do |csv|
       csv << headers if csv.count.eql? 0 
     end
   end
@@ -18,13 +21,13 @@ class MyCLI < Thor
   desc "add NAME, EMAIL", "add contacts to our csv file"
   def add_contact(name, email)
     contact = Contacts.new(name: name, email: email)
-    CSV.open('../files/contacts.csv', "a+") do |csv|
+    CSV.open(@file_path, "a+") do |csv|
       # if csv.include? contact.name
       #   csv << [contact.name, contact.email] 
       # else
       #   puts "Contato já adicionado"
       # end
-      csv << [contact.name, contact.email] 
+      csv << [contact.name, contact.email]
     end
   end
 
@@ -33,7 +36,6 @@ class MyCLI < Thor
     contact = Contacts.new(name: name)
     csv = CSV.parse(File.read("../files/contacts.csv"), headers: true)
     if (csv.find {|row| row["name"] == contact.name})
-      puts "User found"
       puts contact.name 
     else
       puts "User not found"
