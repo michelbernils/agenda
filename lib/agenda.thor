@@ -12,7 +12,7 @@ class CLI < Thor
   desc "start", "add headers to our csv file"
   def start_agenda(file_name)
     agenda = Agenda.new(file_name: file_name)
-    file_path = "../.config/#{agenda.file_name}.csv"
+    file_path = "../files/#{agenda.file_name}.csv"
     headers = ['name','email']
     CSV.open(file_path, 'a+') do |csv|
       csv << headers if csv.count.eql? 0 
@@ -22,21 +22,29 @@ class CLI < Thor
   desc "add FILE_NAME NAME, EMAIL", "add contacts to our csv file"
   def add_contact(file_name, name, email)
     contact = Contacts.new(file_name: file_name, name: name, email: email)
-    file_path = "../.config/#{contact.file_name}.csv"
-    CSV.open(file_path, "a+") do |csv|
-      csv << [contact.name, contact.email]
+    file_path = "../files/#{contact.file_name}.csv"
+    if(File.exist?("../files/#{contact.file_name}.csv")) 
+      CSV.open(file_path, "a+") do |csv|
+        csv << [contact.name, contact.email]
+      end
+    else 
+      puts 'file or directory not found'
     end
   end
 
   desc "search NAME", "search a contact using the contact name"
   def search_contact(file_name, name)
     contact = Contacts.new(file_name:file_name, name: name)
-    file_path = "../.config/#{contact.file_name}.csv"
-    csv = CSV.parse(File.read(file_path), headers: true)
-    if (csv.find {|row| row["name"] == contact.name})
-      puts contact.name 
-    else
-      puts "User not found"
+    file_path = "../files/#{contact.file_name}.csv"
+    if(File.exist?("../files/#{contact.file_name}.csv")) 
+      csv = CSV.parse(File.read(file_path), headers: true)
+      if (csv.find {|row| row["name"] == contact.name})
+        puts contact.name 
+      else
+        puts "User not found"
+      end
+    else 
+      puts 'file or directory not found'
     end
   end
 
@@ -44,17 +52,20 @@ class CLI < Thor
   def delete_contact(file_name, name)
 
     contact = Contacts.new(file_name: file_name, name: name)    
-    file_path = "../.config/#{contact.file_name}.csv"
+    file_path = "../files/#{contact.file_name}.csv"
     table = CSV.table(file_path)
-    table.delete_if do |row|
-      row[:name] == contact.name
-    end
-    
-    File.open(file_path, 'w') do |f|
-      f.write(table.to_csv)
-    end
 
+    if(File.exist?("../files/#{contact.file_name}.csv")) 
+      table.delete_if do |row|
+        row[:name] == contact.name
+      end
+      
+      File.open(file_path, 'w') do |f|
+        f.write(table.to_csv)
+      end
+    else 
+      puts 'file or directory not found'
+    end
   end
-
   
 end
