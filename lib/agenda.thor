@@ -39,7 +39,8 @@ class CLI < Thor
     if(File.exist?("../files/#{contact.file_name}")) 
       csv = CSV.parse(File.read(file_path), headers: true)
       if (csv.find {|row| row["name"] == contact.name})
-        puts contact.name 
+        puts "Usuario encontrado"
+        puts contact.name
       else
         puts "User not found"
       end
@@ -52,10 +53,11 @@ class CLI < Thor
   def delete_contact(file_name, name)
 
     contact = Contacts.new(file_name: file_name, name: name)    
-    file_path = "../files/#{contact.file_name}.csv"
-    table = CSV.table(file_path)
+    file_path = "../files/#{contact.file_name}"
 
-    if(File.exist?("../files/#{contact.file_name}.csv")) 
+    if(File.exist?("../files/#{contact.file_name}")) 
+      table = CSV.table(file_path)
+      
       table.delete_if do |row|
         row[:name] == contact.name
       end

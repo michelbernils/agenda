@@ -14,9 +14,7 @@ load('../lib/agenda.thor')
 
 describe "testing add, search and delete method" do
 
-    after do
-        File.delete("../files/agenda_teste.csv")
-    end
+
 
     # desc "testing if the file path is being create correctly"
     it "testing file path" do
@@ -108,19 +106,17 @@ describe "testing add, search and delete method" do
     # end
 
     # desc ""
-    # it "test_delete_by_name" do
-    #     expected_name = "michel"
-    #     expected_file_name = "agenda_teste.csv"
+    it "test_delete_by_name" do
+        expected_name = "michel"
+        expected_file_name = "agenda_teste.csv"
 
-    #     agenda = Agenda.new(file_name: expected_file_name)
-    #     cli = CLI.new
+        agenda = Agenda.new(file_name: expected_file_name)
+        cli = CLI.new
 
-    #     cli.start_agenda("../files/#{agenda.file_name}")
-    #     table = CSV.parse(File.read("../files/#{agenda.file_name}"), headers: true)
+        cli.start_agenda("../files/#{agenda.file_name}")
+        table = CSV.parse(File.read("../files/#{agenda.file_name}"), headers: true)
 
-    #     cli.delete_contact(expected_name)
-
-        
-    # end
+        cli.delete_contact(expected_name)
+    end
   
 end
