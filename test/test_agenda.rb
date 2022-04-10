@@ -14,7 +14,9 @@ load('../lib/agenda.thor')
 
 describe "testing add, search and delete method" do
 
-
+    after do
+        File.delete("../files/agenda_teste.csv")
+    end
 
     # desc "testing if the file path is being create correctly"
     it "testing file path" do
