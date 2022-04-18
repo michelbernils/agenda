@@ -13,7 +13,7 @@
 1. Run the command ```bundle install```
 1. Now we are ready to start.
 
-#### How to use it?
+## How to use it?
 
 The application revolves around the use of Thor gem, you can check its website [here](http://whatisthor.com/). 
 
@@ -41,7 +41,7 @@ with the agenda.csv file created, you can now start adding your contacts.
 with contacts added you can search and delete contacts.
 
 
-#### Tests? We have tests here.
+## Tests? We have tests here.
 
 In this application we use [Minitest gem](https://github.com/seattlerb/minitest). 
 
@@ -51,17 +51,3 @@ just run the file on the test folder.
  ruby test_agenda.rb 
  ruby test_contacts.rb
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
