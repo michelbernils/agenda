@@ -18,7 +18,6 @@ describe "testing add, search and delete method" do
         File.delete("../files/agenda_teste.csv")
     end
 
-    # desc "testing if the headers are being created correctly"
     it "test_instance_agenda" do
         expected_header_1 = "name"
         expected_header_2 = "email"
@@ -33,7 +32,6 @@ describe "testing add, search and delete method" do
         assert_equal headers, [expected_header_1, expected_header_2]
     end
 
-    # desc "testing if the name are being added correctly"
     it "test_add_name" do
         expected_name = "michel"
         expected_email = "bernils"
@@ -50,22 +48,7 @@ describe "testing add, search and delete method" do
         assert_equal table[0]["name"], expected_name.to_s
     end
 
-    # desc "testing if the name is not added on an unexistent agenda"
-    it "test_add_name_when_agenda_dont_exist" do
-        expected_name = "michel"
-        expected_email = "bernils"
-        expected_file_name = "agenda_teste.csv"
 
-        agenda = Agenda.new(file_name: expected_file_name)
-        cli = CLI.new
-
-        cli.start_agenda("../files/#{agenda.file_name}")
-        cli.add_contact(expected_file_name, expected_name, expected_email)
-
-        
-    end
-
-    # desc "testing if the email are being added correctly"
     it "test_add_email" do
         expected_name = "michel"
         expected_email = "bernils"
@@ -81,12 +64,6 @@ describe "testing add, search and delete method" do
         assert_equal table[0]["email"], expected_email.to_s
     end
 
-    # desc ""
-    # it "test_add_email_when_agenda_dont_exist" do
-
-    # end
-
-    # desc ""
     it "test_search_by_name" do
         expected_name = "michel"
         expected_email = "bernils"
@@ -105,12 +82,6 @@ describe "testing add, search and delete method" do
         assert_equal table[0]["name"], expected_name.to_s
     end
 
-    # desc ""
-    # it "test_search_by_name_when_agenda_dont_exist" do
-
-    # end
-
-    # desc ""
     it "test_delete_by_name" do
         expected_name = "michel"
         expected_email = "bernils"
@@ -126,6 +97,49 @@ describe "testing add, search and delete method" do
         table = CSV.parse(File.read("../files/#{agenda.file_name}"), headers: true)
         assert_nil table[0]
         
+    end
+
+    it "test_file_not_found_add_contact" do
+        expected_name = "michel"
+        expected_email = "bernils"
+        expected_file_name = "agenda_teste.csv"
+        file_name_with_error = "agenda_teste_2.csv"
+
+        agenda = Agenda.new(file_name: expected_file_name)
+        cli = CLI.new
+
+        cli.start_agenda("../files/#{agenda.file_name}")
+
+        assert_equal cli.add_contact(file_name_with_error, expected_name, expected_email), :file_or_directory_not_found
+    end
+
+
+    it "test_file_not_found_search_contact" do
+        expected_name = "michel"
+        expected_email = "bernils"
+        expected_file_name = "agenda_teste.csv"
+        file_name_with_error = "agenda_teste_2.csv"
+
+        agenda = Agenda.new(file_name: expected_file_name)
+        cli = CLI.new
+
+        cli.start_agenda("../files/#{agenda.file_name}")
+
+        assert_equal cli.search_contact(file_name_with_error, expected_name), :file_or_directory_not_found
+    end
+
+    it "test_file_not_found_delete_contact" do
+        expected_name = "michel"
+        expected_email = "bernils"
+        expected_file_name = "agenda_teste.csv"
+        file_name_with_error = "agenda_teste_2.csv"
+
+        agenda = Agenda.new(file_name: expected_file_name)
+        cli = CLI.new
+
+        cli.start_agenda("../files/#{agenda.file_name}")
+
+        assert_equal cli.delete_contact(file_name_with_error, expected_name), :file_or_directory_not_found
     end
   
 end

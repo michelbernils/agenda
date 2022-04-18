@@ -28,7 +28,7 @@ class CLI < Thor
         csv << [contact.name, contact.email]
       end
     else 
-      puts 'file or directory not found'
+      :file_or_directory_not_found
     end
   end
 
@@ -45,7 +45,7 @@ class CLI < Thor
         puts "User not found"
       end
     else 
-      puts 'file or directory not found'
+      :file_or_directory_not_found
     end
   end
 
@@ -57,7 +57,7 @@ class CLI < Thor
 
     if(File.exist?("../files/#{contact.file_name}")) 
       table = CSV.table(file_path)
-      
+
       table.delete_if do |row|
         row[:name] == contact.name
       end
@@ -66,7 +66,7 @@ class CLI < Thor
         f.write(table.to_csv)
       end
     else 
-      puts 'file or directory not found'
+      :file_or_directory_not_found
     end
   end
   
