@@ -48,8 +48,8 @@ In this application we use [Minitest gem](https://github.com/seattlerb/minitest)
 just run the file on the test folder. 
 
 ```
-    ruby test_agenda.rb 
-    ruby test_contacts.rb
+ ruby test_agenda.rb 
+ ruby test_contacts.rb
 ```
 
 
