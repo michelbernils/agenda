@@ -11,6 +11,8 @@ class CLI < Thor
 
   desc "start", "add headers to our csv file"
   def start_agenda(file_name)
+    directory_name = "../files"
+    Dir.mkdir(directory_name) unless Dir.exist?(directory_name)
     agenda = Agenda.new(file_name: file_name)
     file_path = "../files/#{agenda.file_name}"
     headers = ['name','email']
