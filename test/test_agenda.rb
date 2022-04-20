@@ -79,7 +79,7 @@ describe "testing add, search and delete method" do
 
         cli.search_contact(expected_file_name, expected_name)
 
-        assert_equal table[0]["name"], expected_name.to_s
+        assert_equal cli.search_contact(expected_file_name, expected_name), expected_name.to_s
     end
 
     it "test_delete_by_name" do

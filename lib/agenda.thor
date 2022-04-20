@@ -41,7 +41,7 @@ class CLI < Thor
     if(File.exist?("../files/#{contact.file_name}")) 
       csv = CSV.parse(File.read(file_path), headers: true)
       if (csv.find {|row| row["name"] == contact.name})
-        puts csv.find {|row| row["name"] == contact.name}
+        contact.name
       else
         puts "User not found"
       end
