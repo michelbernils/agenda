@@ -43,9 +43,9 @@ with contacts added you can search and delete contacts.
 
 ## Tests? We have tests here.
 
-In this application we use [Minitest gem](https://github.com/seattlerb/minitest). 
+In this application we use [Minitest](https://github.com/seattlerb/minitest) gem. 
 
-just run the file on the test folder. 
+just run the files on the test folder. 
 
 ```
  ruby test_agenda.rb 
