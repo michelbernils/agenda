@@ -1,10 +1,9 @@
 class Contacts
-    attr_reader :name, :email, :file_name
+    attr_accessor :file_name, :name, :email
 
     def initialize(name: nil, email: nil, file_name: nil)
         @name = name
         @email = email
         @file_name = file_name
     end
-
 end

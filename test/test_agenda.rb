@@ -1,14 +1,12 @@
 require "minitest/autorun"
 require 'minitest/hooks/default'
 require 'csv'
-require_relative '../lib/contacts'
+require_relative '../lib/entity/contact'
+require_relative '../lib/entity/agenda'
 require 'thor'
 require 'byebug'
+
 load('../lib/agenda.thor')
-
-
-#add, busca, delete, create
-#testar os dois separados
 
 
 

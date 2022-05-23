@@ -1,11 +1,10 @@
-require_relative '../lib/contacts'
-require_relative '../lib/agenda'
+require_relative '../lib/entity/agenda'
+require_relative '../lib/entity/contact'
+require_relative '../lib/repository/contact_repository'
 require 'fileutils'
 require 'csv'
 require 'thor'
 require 'byebug'
-
-
 
 class CLI < Thor
 
@@ -14,15 +13,20 @@ class CLI < Thor
     agenda = Agenda.new(file_name: file_name)
     file_path = "../files/#{agenda.file_name}"
     headers = ['name','email']
+
     CSV.open(file_path, 'a+') do |csv|
       csv << headers if csv.count.eql? 0 
       end
   end
 
+
+
   desc "add FILE_NAME NAME, EMAIL", "add contacts to our csv file"
   def add_contact(file_name, name, email)
     contact = Contacts.new(file_name: file_name, name: name, email: email)
     file_path = "../files/#{contact.file_name}"
+
+
     if(File.exist?("../files/#{contact.file_name}")) 
       CSV.open(file_path, "a+") do |csv|
         csv << [contact.name, contact.email]
@@ -30,6 +34,7 @@ class CLI < Thor
     else 
       :file_or_directory_not_found
     end
+
   end
 
   desc "search NAME", "search a contact using the contact name"
