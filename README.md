@@ -52,6 +52,10 @@ just run the file on the test folder.
     ruby test_contacts.rb
 ```
 
+### Rubocop
+
+In this project we use [RuboCop gem](https://github.com/rubocop/rubocop) 
+RuboCop is a linter/code formatter. To see the magic happening, just type `bundle exec rubocop` in any folder that has ruby files.
 
 
 

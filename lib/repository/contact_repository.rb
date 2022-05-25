@@ -13,21 +13,16 @@ class ContactRepository
     headers = %w[name header]
     CSV.open(file_path, 'a+') do |csv|
       csv << headers if csv.count.eql? 0
-      end
-  end
-
-  def add_contact_to_csv(file_name, name, email)
-    return unless File.exist?("../files/#{file_name}")
-
-    CSV.open("../files/#{file_name}", 'a+') do |csv|
-      csv << [contact.name, contact.email]
     end
   end
 
   def add_contact_to_csv(file_name, name, email)
     return unless File.exist?("../files/#{file_name}")
 
-    CSV.open("../files/#{file_name}", 'a+') do |csv|
+    contact = Contacts.new(file_name: file_name, name: name, email: email)
+    file_path = "../files/#{contact.file_name}"
+
+    CSV.open(file_path, 'a+') do |csv|
       csv << [contact.name, contact.email]
     end
   end
@@ -35,7 +30,9 @@ class ContactRepository
   def search_contact_on_csv_using_name(file_name, name)
     return unless File.exist?("../files/#{file_name}")
 
-    csv = CSV.parse(File.read("../files/#{file_name}"), headers: true)
+    contact = Contacts.new(file_name: file_name, name: name)
+    file_path = "../files/#{contact.file_name}"
+    csv = CSV.parse(File.read(file_path), headers: true)
     if csv.find { |row| row['name'] == contact.name }
       puts 'Usuario encontrado'
       puts contact.name
@@ -47,11 +44,13 @@ class ContactRepository
   def delete_contact_on_csv_using_name(file_name, name)
     return unless File.exist?("../files/#{file_name}")
 
-    table = CSV.table("../files/#{file_name}")
+    contact = Contacts.new(file_name: file_name, name: name)
+    file_path = "../files/#{contact.file_name}"
+    table = CSV.table(file_path)
     table.delete_if do |row|
       row[:name] == contact.name
     end
-    File.open("../files/#{file_name}", 'w') do |f|
+    File.open(file_path, 'w') do |f|
       f.write(table.to_csv)
     end
   end
