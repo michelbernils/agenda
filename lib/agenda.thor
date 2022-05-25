@@ -14,7 +14,7 @@ class CLI < Thor
   def start_agenda(file_name)
     agenda = Agenda.new(file_name: file_name)
     file_path = "../files/#{agenda.file_name}"
-    headers = %w[name header]
+    headers = %w[name email]
 
     CSV.open(file_path, 'a+') do |csv|
       csv << headers if csv.count.eql? 0

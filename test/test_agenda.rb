@@ -12,13 +12,11 @@ load('../lib/agenda.thor')
 
 # test for the agemda class
 
-describe 'delete file after each test' do
+describe 'intantece agenda' do
   after do
     File.delete('../files/agenda_teste.csv')
   end
-end
 
-describe 'intantece agenda' do
   it 'test_instance_agenda' do
     expected_header_one = 'name'
     expected_header_two = 'email'
@@ -34,6 +32,9 @@ describe 'intantece agenda' do
 end
 
 describe '' do
+  after do
+    File.delete('../files/agenda_teste.csv')
+  end
   it 'test_add_name' do
     expected_name = 'michel'
     expected_email = 'bernils'
@@ -52,6 +53,9 @@ describe '' do
 end
 
 describe '' do
+  after do
+    File.delete('../files/agenda_teste.csv')
+  end
   it 'test_add_email' do
     expected_name = 'michel'
     expected_email = 'bernils'
@@ -69,6 +73,9 @@ describe '' do
 end
 
 describe '' do
+  after do
+    File.delete('../files/agenda_teste.csv')
+  end
   it 'test_search_by_name' do
     expected_name = 'michel'
     expected_email = 'bernils'
@@ -89,6 +96,9 @@ describe '' do
 end
 
 describe '' do
+  after do
+    File.delete('../files/agenda_teste.csv')
+  end
   it 'test_delete_by_name' do
     expected_name = 'michel'
     expected_email = 'bernils'
@@ -107,6 +117,9 @@ describe '' do
 end
 
 describe '' do
+  after do
+    File.delete('../files/agenda_teste.csv')
+  end
   it 'test_file_not_found_add_contact' do
     expected_name = 'michel'
     expected_email = 'bernils'
@@ -123,6 +136,9 @@ describe '' do
 end
 
 describe '' do
+  after do
+    File.delete('../files/agenda_teste.csv')
+  end
   it 'test_file_not_found_search_contact' do
     expected_name = 'michel'
     expected_file_name = 'agenda_teste.csv'
@@ -138,6 +154,9 @@ describe '' do
 end
 
 describe '' do
+  after do
+    File.delete('../files/agenda_teste.csv')
+  end
   it 'test_file_not_found_delete_contact' do
     expected_name = 'michel'
     expected_file_name = 'agenda_teste.csv'
