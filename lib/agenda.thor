@@ -23,19 +23,19 @@ class CLI < Thor
 
   desc 'add FILE_NAME NAME, EMAIL', 'add contacts to our csv file'
   def add_contact(file_name, name, email)
-    contact_repository = ContactRepository.new
-    contact_repository.add_contact_to_csv(file_name, name, email)
+    # contact_repository = ContactRepository.new
+    ContactRepository.add_contact_to_csv(file_name, name, email)
   end
 
   desc 'search NAME', 'search a contact using the contact name'
   def search_contact(file_name, name)
-    contact_repository = ContactRepository.new
-    contact_repository.search_contact_on_csv_using_name(file_name, name)
+    # contact_repository = ContactRepository.new
+    ContactRepository.search_contact_on_csv_using_name(file_name, name)
   end
 
   desc 'delete NAME', 'deleta a contact using the contact name'
   def delete_contact(file_name, name)
-    contact_repository = ContactRepository.new
-    contact_repository.delete_contact_on_csv_using_name(file_name, name)
+    # contact_repository = ContactRepository.new
+    ContactRepository.delete_contact_on_csv_using_name(file_name, name)
   end
 end

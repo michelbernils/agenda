@@ -9,4 +9,5 @@ class Contacts
     @email = email
     @file_name = file_name
   end
+
 end

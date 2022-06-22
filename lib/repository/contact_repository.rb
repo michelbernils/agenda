@@ -7,7 +7,8 @@ load('../lib/agenda.thor')
 
 # This class contains all the logic necessary to run the agenda
 class ContactRepository
-  def start_agenda(file_name)
+
+  def self.start_agenda
     agenda = Agenda.new(file_name: file_name)
     file_path = "../files/#{agenda.file_name}"
     headers = %w[name email]
@@ -16,7 +17,7 @@ class ContactRepository
     end
   end
 
-  def add_contact_to_csv(file_name, name, email)
+  def self.add_contact_to_csv(file_name, name, email)
     return unless File.exist?("../files/#{file_name}")
 
     contact = Contacts.new(file_name: file_name, name: name, email: email)
@@ -25,9 +26,12 @@ class ContactRepository
     CSV.open(file_path, 'a+') do |csv|
       csv << [contact.name, contact.email]
     end
+
+    [contact.name, contact.email]
+
   end
 
-  def search_contact_on_csv_using_name(file_name, name)
+  def self.search_contact_on_csv_using_name(file_name, name)
     return unless File.exist?("../files/#{file_name}")
 
     contact = Contacts.new(file_name: file_name, name: name)
@@ -39,9 +43,12 @@ class ContactRepository
     else
       puts 'User not found'
     end
+
+    [contact.name]
+
   end
 
-  def delete_contact_on_csv_using_name(file_name, name)
+  def self.delete_contact_on_csv_using_name(file_name, name)
     return unless File.exist?("../files/#{file_name}")
 
     contact = Contacts.new(file_name: file_name, name: name)
