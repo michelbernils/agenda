@@ -22,7 +22,6 @@ describe 'intantece agenda' do
     expected_header_two = 'email'
     expected_file_name = 'agenda_teste.csv'
 
-    agenda = Agenda.new(file_name: expected_file_name)
     cli = CLI.new
     cli.start_agenda("../files/#{agenda.file_name}")
     headers = CSV.read("../files/#{agenda.file_name}", headers: true).headers
