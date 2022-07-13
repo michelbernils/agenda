@@ -3,39 +3,51 @@
 require_relative '../lib/entity/agenda'
 require_relative '../lib/entity/contact'
 require_relative '../lib/repository/contact_repository'
+require_relative '../lib/repository/agenda_repository'
 require 'fileutils'
 require 'csv'
 require 'thor'
 require 'byebug'
+require 'yaml'
+
+# EX
+# $ cli-scheduler start escola csv
+#
+# -> Criar YML, ~/cli-scheduler/config.yml
+# agendas:
+#   name: escola
+#   path: "~/cli-scheduelr/agendas/escola.csv"
+#   storage: csv
+
 
 # CLI for the agenda.
 class CLI < Thor
-  desc 'start', 'add headers to our csv file'
-  def start_agenda(file_name)
-    agenda = Agenda.new(file_name: file_name)
-    file_path = "../files/#{agenda.file_name}"
-    headers = %w[name email]
+  desc 'start AGENDA_NAME STORAGE_TYPE', 'add headers to our csv file'
 
-    CSV.open(file_path, 'a+') do |csv|
-      csv << headers if csv.count.eql? 0
-    end
+  def start_agenda(agenda_name, storage_type)
+    file_path = "../agendas/#{agenda_name}.#{storage_type}"
+    csv = Csv.new(file: file_path)
+    AgendaRepository.new(storage_client: csv.start_agenda_csv(agenda_name, storage_type))
   end
 
-  desc 'add FILE_NAME NAME, EMAIL', 'add contacts to our csv file'
-  def add_contact(file_name, name, email)
-    # contact_repository = ContactRepository.new
-    ContactRepository.add_contact_to_csv(file_name, name, email)
+  desc 'add AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'
+  def add_contact(agenda_name, storage_type, name, email)
+    file_path = "../agendas/#{agenda_name}.#{storage_type}"
+    csv = Csv.new(file: file_path)
+    ContactRepository.new(storage_client: csv.add(name, email))
   end
 
-  desc 'search NAME', 'search a contact using the contact name'
-  def search_contact(file_name, name)
-    # contact_repository = ContactRepository.new
-    ContactRepository.search_contact_on_csv_using_name(file_name, name)
+  desc 'search AGENDA_NAME STORAGE_TYPE, NAME', 'search a contact using the contact name'
+  def search_contact(agenda_name, storage_type, name)
+    file_path = "../agendas/#{agenda_name}.#{storage_type}"
+    csv = Csv.new(file: file_path)
+    ContactRepository.new(storage_client: csv.search(name))
   end
 
   desc 'delete NAME', 'deleta a contact using the contact name'
-  def delete_contact(file_name, name)
-    # contact_repository = ContactRepository.new
-    ContactRepository.delete_contact_on_csv_using_name(file_name, name)
+  def delete_contact(agenda_name, storage_type, name)
+    file_path = "../agendas/#{agenda_name}.#{storage_type}"
+    csv = Csv.new(file: file_path)
+    ContactRepository.new(storage_client: csv.delete(name))
   end
 end

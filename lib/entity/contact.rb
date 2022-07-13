@@ -2,12 +2,10 @@
 
 # Contacts class
 class Contacts
-  attr_accessor :file_name, :name, :email
+  attr_accessor :name, :email
 
-  def initialize(name: nil, email: nil, file_name: nil)
+  def initialize(name: nil, email: nil)
     @name = name
     @email = email
-    @file_name = file_name
   end
-
 end
