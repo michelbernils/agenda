@@ -9,10 +9,9 @@ class Csv
     @file = file
   end
 
-  def start_agenda_csv(name, storage_type)
-    file_path = "../agendas/#{name}.#{storage_type}"
-    csv = Csv.new(file: file_path)
-    CSV.open(file, 'a+') do |csv|
+  def start_agenda(agenda_name, storage_type)
+    file_path = "../agendas/#{agenda_name}.#{storage_type}"
+    CSV.open(file_path, 'a+') do |csv|
       csv << %w[name email] if csv.count.eql? 0
     end
   end
@@ -22,7 +21,7 @@ class Csv
 
     csv.flush
   end
-
+  
   def search(name)
     csv_parsed = CSV.parse(File.read(file), headers: true)
     if csv_parsed.find { |row| row['name'] == name }

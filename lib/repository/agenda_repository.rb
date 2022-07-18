@@ -14,9 +14,9 @@ class AgendaRepository
     @storage_client = storage_client
   end
 
-  def start_agenda(name, storage_type)
-    storage_client.start_agenda_csv(name, storage_type)
+  # def start_agenda(name, storage_type)
+  #   storage_client.start_agenda(name, storage_type)
 
-    Agenda.new(name: name, storage_type: storage_type)
-  end
+  #   Agenda.new(name: name, storage_type: storage_type)
+  # end
 end

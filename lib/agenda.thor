@@ -26,28 +26,27 @@ class CLI < Thor
 
   def start_agenda(agenda_name, storage_type)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
-    csv = Csv.new(file: file_path)
-    AgendaRepository.new(storage_client: csv.start_agenda_csv(agenda_name, storage_type))
+    AgendaRepository.new(storage_client: Csv.new(file: file_path).start_agenda(agenda_name, storage_type))
+    
   end
 
   desc 'add AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'
   def add_contact(agenda_name, storage_type, name, email)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
-    csv = Csv.new(file: file_path)
-    ContactRepository.new(storage_client: csv.add(name, email))
+    ContactRepository.new(storage_client: Csv.new(file: file_path).add(name, email))
   end
 
   desc 'search AGENDA_NAME STORAGE_TYPE, NAME', 'search a contact using the contact name'
   def search_contact(agenda_name, storage_type, name)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
     csv = Csv.new(file: file_path)
-    ContactRepository.new(storage_client: csv.search(name))
+    ContactRepository.new(storage_client: Csv.new(file: file_path).search(name))
   end
 
   desc 'delete NAME', 'deleta a contact using the contact name'
   def delete_contact(agenda_name, storage_type, name)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
     csv = Csv.new(file: file_path)
-    ContactRepository.new(storage_client: csv.delete(name))
+    ContactRepository.new(storage_client: Csv.new(file: file_path).delete(name))
   end
 end
