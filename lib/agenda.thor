@@ -27,7 +27,20 @@ class CLI < Thor
   def start_agenda(agenda_name, storage_type)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
     AgendaRepository.new(storage_client: Csv.new(file: file_path).start_agenda(agenda_name, storage_type))
+
     
+    yaml_file_path = "../config.yml"
+    if (File.exists?(yaml_file_path) == false)
+      File.open(yaml_file_path, 'a+') do |yaml|
+        yaml.write("agendas: \n\n")
+      end
+    end
+
+    File.open(yaml_file_path, 'a+') do |yaml|
+      yaml.write(" name: #{agenda_name} \n")
+      yaml.write(" path: ../agendas/#{agenda_name}.#{storage_type} \n")
+      yaml.write(" storage: #{storage_type} \n \n")
+    end
   end
 
   desc 'add AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'

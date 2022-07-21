@@ -14,9 +14,13 @@ class AgendaRepository
     @storage_client = storage_client
   end
 
-  # def start_agenda(name, storage_type)
-  #   storage_client.start_agenda(name, storage_type)
+  def start_agenda(name, storage_type)
+    file_path = "../agendas/#{agenda_name}.#{storage_type}"
+    # TODO: exclusivo para csv
+    CSV.open(file_path, 'a+') do |csv|
+      csv << %w[name email] if csv.count.eql? 0
+    end
 
-  #   Agenda.new(name: name, storage_type: storage_type)
-  # end
+    Agenda.new(name: name, storage_type: storage_type)
+  end
 end
