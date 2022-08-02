@@ -21,8 +21,8 @@ class ContactRepository
 
   def search_contact_using_name(name)
     storage_client.search(name)
-    
-    contact = Contacts.new(name: name)
+
+    Contacts.new(name: name)
   end
 
   def delete_contact_using_name(name)

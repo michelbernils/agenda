@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'csv'
 
 # This class contains all the logic necessary for CSV Class
@@ -9,7 +10,7 @@ class Csv
     @file = file
   end
 
-  def start_agenda(agenda_name, storage_type)
+  def start(agenda_name, storage_type)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
     CSV.open(file_path, 'a+') do |csv|
       csv << %w[name email] if csv.count.eql? 0
@@ -21,7 +22,7 @@ class Csv
 
     csv.flush
   end
-  
+
   def search(name)
     csv_parsed = CSV.parse(File.read(file), headers: true)
     if csv_parsed.find { |row| row['name'] == name }
@@ -44,6 +45,6 @@ class Csv
   private
 
   def csv
-    @csv ||= CSV.open(file, "a+")
+    @csv ||= CSV.open(file, 'a+')
   end
 end
