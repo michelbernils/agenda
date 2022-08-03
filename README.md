@@ -20,7 +20,7 @@ The application revolves around the use of Thor gem, you can check its website [
 So the first thing you should do is start the agenda you want. 
 
 ````
- thor cli:start_agenda agenda.csv
+ thor cli:start_agenda agenda csv
 ````
 
 here we are starting an agenda called agenda.csv, with `name` and `email` as headers.
@@ -28,14 +28,14 @@ here we are starting an agenda called agenda.csv, with `name` and `email` as hea
 Obs: you have to specify the file type, here we are using the .csv.
 
 ```
-thor cli:add_contact agenda michel xpto@gmail.com
+thor cli:add_contact agenda csv michel xpto@gmail.com
 ```
 
 with the agenda.csv file created, you can now start adding your contacts.
 
 ````
- thor cli:search_contact agenda.csv michel
- thor cli:delete_contact agenda.csv michel
+ thor cli:search_contact agenda csv michel
+ thor cli:delete_contact agenda csv michel
 ````
 
 with contacts added you can search and delete contacts.

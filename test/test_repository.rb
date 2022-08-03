@@ -12,7 +12,7 @@ load('../lib/agenda.thor')
 
 # test for the agemda class
 
-describe 'intantece agenda' do
+describe 'instance agenda' do
   after do
     File.delete('../files/agenda_teste.csv')
   end
@@ -20,7 +20,6 @@ describe 'intantece agenda' do
   it 'test_instance_agenda' do
     expected_header_one = 'name'
     expected_header_two = 'email'
-    expected_file_name = 'agenda_teste.csv'
 
     cli = CLI.new
     cli.start_agenda("../files/#{agenda.file_name}")

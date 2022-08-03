@@ -26,6 +26,7 @@ GEM
     ruby-progressbar (1.11.0)
     thor (1.2.1)
     unicode-display_width (2.1.0)
+    yaml (0.2.0)
 
 PLATFORMS
   ruby
@@ -36,6 +37,7 @@ DEPENDENCIES
   minitest-hooks
   rubocop
   thor
+  yaml
 
 BUNDLED WITH
    1.17.2

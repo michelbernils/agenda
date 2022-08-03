@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
-
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
-
-# gem "rails"
-gem "minitest"
-gem "minitest-hooks"
-gem 'thor'
+# gem 'rails'
 gem 'byebug'
+gem 'minitest'
+gem 'minitest-hooks'
 gem 'rubocop', require: false
+gem 'thor'
+gem 'yaml'

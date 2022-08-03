@@ -16,7 +16,4 @@ class AgendaTest < Minitest::Test
 
     assert_equal file_name, agenda.file_name
   end
-
 end
-
-
