@@ -45,18 +45,18 @@ class CLI < Thor
   desc 'add AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'
   def add_contact(agenda_name, storage_type, name, email)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
-    ContactRepository.new(storage_client: Csv.new(file: file_path).add(name, email))
+    ContactRepository.new(storage_client: Csv.new(file: file_path).add_contact(name, email))
   end
 
   desc 'search AGENDA_NAME STORAGE_TYPE, NAME', 'search a contact using the contact name'
   def search_contact(agenda_name, storage_type, name)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
-    ContactRepository.new(storage_client: Csv.new(file: file_path).search(name))
+    ContactRepository.new(storage_client: Csv.new(file: file_path).search_contact_using_name(name))
   end
 
   desc 'delete NAME', 'deleta a contact using the contact name'
   def delete_contact(agenda_name, storage_type, name)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
-    ContactRepository.new(storage_client: Csv.new(file: file_path).delete(name))
+    ContactRepository.new(storage_client: Csv.new(file: file_path).delete_contact_using_name(name))
   end
 end

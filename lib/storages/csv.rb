@@ -11,8 +11,8 @@ class Csv
   end
 
   def start(agenda_name, storage_type)
-    directory_name = "../agendas"
-    Dir.mkdir(directory_name) unless Dir.exist?(directory_name)
+    directory_path = "../agendas"
+    Dir.mkdir(directory_path) unless Dir.exist?(directory_path)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
     CSV.open(file_path, 'a+') do |csv|
       csv << %w[name email] if csv.count.eql? 0
