@@ -10,7 +10,7 @@ class Csv
     @file = file
   end
 
-  def start(agenda_name, storage_type)
+  def start_csv(agenda_name, storage_type)
     directory_path = "../agendas"
     Dir.mkdir(directory_path) unless Dir.exist?(directory_path)
     file_path = "../agendas/#{agenda_name}.#{storage_type}"

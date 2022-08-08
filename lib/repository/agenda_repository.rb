@@ -16,7 +16,7 @@ class AgendaRepository
   end
 
   def start(agenda_name, storage_type)
-    storage_client.start(agenda_name, storage_type)
+    storage_client.start_csv(agenda_name, storage_type)
 
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
     Csv.new(file: file_path)
