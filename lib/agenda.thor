@@ -6,40 +6,22 @@ require 'thor'
 require 'byebug'
 require 'yaml'
 
+require_relative '../lib/config'
 require_relative '../lib/repository/agenda_repository'
 require_relative '../lib/repository/contact_repository'
 require_relative '../lib/entity/agenda'
 require_relative '../lib/entity/contact'
-
-# EX
-# $ cli-scheduler start escola csv
-#
-# -> Criar YML, ~/cli-scheduler/config.yml
-# agendas:
-#   name: escola
-#   path: "~/cli-scheduelr/agendas/escola.csv"
-#   storage: csv
+require_relative '../lib/storages/storage_handler.rb'
 
 # CLI for the agenda.
 class CLI < Thor
   desc 'start AGENDA_NAME STORAGE_TYPE', 'add headers to our csv file'
 
   def start_agenda(agenda_name, storage_type)
+    Config.new(agenda_name: agenda_name, storage_type: storage_type).write_file_information
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
-    AgendaRepository.new(storage_client: Csv.new(file: file_path)).start(agenda_name, storage_type)
-
-    yaml_file_path = '../config.yml'
-    if File.exists?(yaml_file_path) == false
-      File.open(yaml_file_path, 'a+') do |yaml|
-        yaml.write("agendas: \n\n")
-      end
-    end
-
-    File.open(yaml_file_path, "a+") do |yaml|
-      yaml.write(" name: #{agenda_name} \n")
-      yaml.write(" path: ../agendas/#{agenda_name}.#{storage_type} \n")
-      yaml.write(" storage: #{storage_type} \n \n")
-    end
+    AgendaRepository.new(storage_client: StorageHandler.new(file_path:file_path, agenda_name: agenda_name).storage_client).start(agenda_name, storage_type)
+    # AgendaRepository.new(storage_client: Csv.new(file: file_path)).start(agenda_name, storage_type)
   end
 
   desc 'add AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'
