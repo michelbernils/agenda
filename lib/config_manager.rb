@@ -4,7 +4,7 @@ require 'fileutils'
 require 'byebug'
 
 # YAML config class
-class Config
+class ConfigManager
   attr_accessor :yaml_file_path, :agenda_name, :storage_type
   
   def initialize(yaml_file_path: '../config.yaml', agenda_name:, storage_type:)
@@ -23,5 +23,16 @@ class Config
           yaml.write("  storage: #{storage_type} \n \n")
         end
       end
+  end
+
+  def storage_client
+    file_path = "../agendas/#{agenda_name}.#{storage_type}"
+    hash = YAML.load File.read(@yaml_file_path)
+    case hash[@agenda_name]['storage']
+    when 'csv'
+      Csv.new(file: file_path)
+    else
+     :error
+    end
   end
 end

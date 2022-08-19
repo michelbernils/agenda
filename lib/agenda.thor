@@ -6,7 +6,7 @@ require 'thor'
 require 'byebug'
 require 'yaml'
 
-require_relative '../lib/config'
+require_relative '../lib/config_manager'
 require_relative '../lib/repository/agenda_repository'
 require_relative '../lib/repository/contact_repository'
 require_relative '../lib/entity/agenda'
@@ -18,10 +18,10 @@ class CLI < Thor
   desc 'start AGENDA_NAME STORAGE_TYPE', 'add headers to our csv file'
 
   def start_agenda(agenda_name, storage_type)
-    Config.new(agenda_name: agenda_name, storage_type: storage_type).write_file_information
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
-    AgendaRepository.new(storage_client: StorageHandler.new(file_path:file_path, agenda_name: agenda_name).storage_client).start(agenda_name, storage_type)
-    # AgendaRepository.new(storage_client: Csv.new(file: file_path)).start(agenda_name, storage_type)
+    config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
+    config_manager.write_file_information
+    AgendaRepository.new(storage_client: config_manager.storage_client).start(file_path)
   end
 
   desc 'add AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'
