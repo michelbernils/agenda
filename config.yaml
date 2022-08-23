@@ -102,3 +102,7 @@ agendassasdasfaasdasfgasasdafssasfg:
   path: ../agendas/agendassasdasfaasdasfgasasdafssasfg.csv 
   storage: csv 
  
+agenfasdagfa: 
+  path: ../agendas/agenfasdagfa.csv 
+  storage: csv 
+ 
