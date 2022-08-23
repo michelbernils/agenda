@@ -25,6 +25,10 @@ class ConfigManager
       end
   end
 
+  def file_path
+    file_path = "../agendas/#{@agenda_name}.#{@storage_type}"
+  end
+
   def storage_client
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
     hash = YAML.load File.read(@yaml_file_path)

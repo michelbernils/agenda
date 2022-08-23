@@ -18,6 +18,6 @@ class AgendaRepository
   def start(file_path)
     storage_client.start_csv(file_path)
     
-    Csv.new(file: file_path)
+    Agenda.new(file_name: file_path)
   end
 end
