@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative '../../lib/config_manager'
 require_relative '../../lib/entity/contact'
 require_relative '../../lib/entity/agenda'
 require_relative '../../lib/storages/csv'
@@ -15,9 +16,8 @@ class AgendaRepository
     @storage_client = storage_client
   end
 
-  def start(file_path)
-    storage_client.start_csv(file_path)
-    
-    Agenda.new(file_name: file_path)
+  def start
+    storage_client.start
+    Agenda.new(file_name: storage_client.file)
   end
 end

@@ -10,10 +10,10 @@ class Csv
     @file = file
   end
 
-  def start_csv(file_path)
-    directory_path = "../agendas"
+  def start
+    directory_path = '../agendas'
     Dir.mkdir(directory_path) unless Dir.exist?(directory_path)
-    CSV.open(file_path, 'a+') do |csv|
+    CSV.open(file, 'a+') do |csv|
       csv << %w[name email] if csv.count.eql? 0
     end
   end

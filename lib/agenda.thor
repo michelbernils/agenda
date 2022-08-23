@@ -19,9 +19,9 @@ class CLI < Thor
   def start_agenda(agenda_name, storage_type)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
     config_manager.write_file_information
-    AgendaRepository.new(storage_client: config_manager.storage_client).start(config_manager.file_path)
+    AgendaRepository.new(storage_client: config_manager.storage_client).start
   end
-
+  
   desc 'add AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'
   def add_contact(agenda_name, storage_type, name, email)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
