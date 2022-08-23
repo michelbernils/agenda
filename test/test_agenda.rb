@@ -1,16 +1,22 @@
-require "minitest/autorun"
-require 'minitest/hooks/default'
-require 'csv'
-require_relative '../lib/contacts'
-require 'thor'
-require 'byebug'
-load('../lib/agenda.thor')
+# frozen_string_literal: true
 
+require 'minitest/autorun'
+require_relative '../lib/entity/agenda'
 
-#add, busca, delete, create
-#testar os dois separados
+# test for the agenda class
+class AgendaTest < Minitest::Test
+  def test_instance_contacts
+    agenda = Agenda.new
+    assert_instance_of Agenda, agenda
+  end
 
+  def test_agenda_return_file_name
+    file_name = 'agenda.csv'
+    agenda = Agenda.new(file_name: file_name)
 
+repository-pattern
+    assert_equal file_name, agenda.file_name
+end
 
 describe "testing add, search and delete method" do
 
@@ -141,5 +147,4 @@ describe "testing add, search and delete method" do
 
         assert_equal cli.delete_contact(file_name_with_error, expected_name), :file_or_directory_not_found
     end
-  
 end
