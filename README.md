@@ -13,7 +13,7 @@
 1. Run the command ```bundle install```
 1. Now we are ready to start.
 
-#### How to use it?
+## How to use it?
 
 The application revolves around the use of Thor gem, you can check its website [here](http://whatisthor.com/). 
 
@@ -41,31 +41,18 @@ with the agenda.csv file created, you can now start adding your contacts.
 with contacts added you can search and delete contacts.
 
 
-#### Tests? We have tests here.
+## Tests? We have tests here.
 
-In this application we use [Minitest gem](https://github.com/seattlerb/minitest). 
+In this application we use [Minitest](https://github.com/seattlerb/minitest) gem. 
 
-just run the file on the test folder. 
+just run the files on the test folder. 
 
 ```
-    ruby test_agenda.rb 
-    ruby test_contacts.rb
+ ruby test_agenda.rb 
+ ruby test_contacts.rb
 ```
 
 ### Rubocop
 
 In this project we use [RuboCop gem](https://github.com/rubocop/rubocop) 
 RuboCop is a linter/code formatter. To see the magic happening, just type `bundle exec rubocop` in any folder that has ruby files.
-
-
-
-
-
-
-
-
-
-
-
-
-

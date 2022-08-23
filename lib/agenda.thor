@@ -27,7 +27,7 @@ class CLI < Thor
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
     ContactRepository.new(storage_client: config_manager.storage_client).add_contact(name, email)
   end
-
+  
   desc 'search AGENDA_NAME STORAGE_TYPE, NAME', 'search a contact using the contact name'
   def search_contact(agenda_name, storage_type, name)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
