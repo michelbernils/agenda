@@ -33,10 +33,6 @@ class Csv
     end
   end
 
-  # def update(name, email)
-
-  # end
-
   def delete(name)
     table = CSV.table(file)
     table.delete_if do |row|

@@ -33,7 +33,7 @@ class ConfigManager
     when 'csv'
       Csv.new(file: file_path)
     when 'api'
-      Api.new
+      Api.new(database_name: agenda_name)
     else
       :error
     end

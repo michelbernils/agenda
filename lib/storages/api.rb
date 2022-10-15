@@ -5,8 +5,19 @@ require 'faraday'
 # All the logic for the API requests
 class Api
 
+  def initialize(database_name:)
+    @database_name = database_name
+  end
+
   def start
-    :not_implement
+    conn = Faraday.new(
+      url: 'http://127.0.0.1:4567',
+      headers: {'Content-Type' => 'application/json'}
+    )
+
+    response = conn.post('/create-database') do |req|
+      req.body = JSON.generate(database_name: @database_name)
+    end
   end
 
   def add(name, email)
@@ -17,6 +28,17 @@ class Api
 
     response = conn.post('/create') do |req|
       req.body = JSON.generate(name: name, email: email)
+    end
+  end
+
+  def search(name)
+    conn = Faraday.new(
+      url: 'http://127.0.0.1:4567',
+      headers: {'Content-Type' => 'application/json'}
+    )
+
+    response = conn.post('/search') do |req|
+      req.body = JSON.generate(name: name)
     end
   end
 
