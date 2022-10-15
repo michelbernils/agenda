@@ -4,6 +4,7 @@ require_relative '../../lib/config_manager'
 require_relative '../../lib/entity/contact'
 require_relative '../../lib/entity/agenda'
 require_relative '../../lib/storages/csv'
+require_relative '../../lib/storages/api'
 
 require 'csv'
 require 'byebug'
@@ -18,6 +19,5 @@ class AgendaRepository
 
   def start
     storage_client.start
-    Agenda.new(file_name: storage_client.file)
   end
 end

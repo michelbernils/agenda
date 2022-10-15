@@ -1,108 +1,40 @@
-agendass: 
-  path: ../agendas/agendass.csv 
+agendas: 
+  path: ../agendas/agendas.api 
+  storage: api 
+ 
+agendas: 
+  path: ../agendas/agendas.api 
+  storage: api 
+ 
+agendas: 
+  path: ../agendas/agendas.api 
+  storage: api 
+ 
+agendas: 
+  path: ../agendas/agendas.api 
+  storage: api 
+ 
+agendas: 
+  path: ../agendas/agendas.api 
+  storage: api 
+ 
+agendas: 
+  path: ../agendas/agendas.api 
+  storage: api 
+ 
+agendas: 
+  path: ../agendas/agendas.api 
+  storage: api 
+ 
+agendas: 
+  path: ../agendas/agendas.api 
+  storage: api 
+ 
+agenda: 
+  path: ../agendas/agenda.csv 
   storage: csv 
  
-agendass: 
-  path: ../agendas/agendass.csv 
-  storage: csv 
- 
-agendasss: 
-  path: ../agendas/agendasss.csv 
-  storage: csv 
- 
-agendasss: 
-  path: ../agendas/agendasss.csv 
-  storage: csv 
- 
-agendassxxs: 
-  path: ../agendas/agendassxxs.csv 
-  storage: csv 
- 
-agendassasdasfas: 
-  path: ../agendas/agendassasdasfas.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgass: 
-  path: ../agendas/agendassasdasfaasdasfgass.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgass: 
-  path: ../agendas/agendassasdasfaasdasfgass.csv 
-  storage: csv 
- 
-agendass: 
-  path: ../agendas/agendass.csv 
-  storage: csv 
- 
-agendass: 
-  path: ../agendas/agendass.csv 
-  storage: csv 
- 
-agendass: 
-  path: ../agendas/agendass.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgass: 
-  path: ../agendas/agendassasdasfaasdasfgass.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafss: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafss.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafss: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafss.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafss: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafss.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafss: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafss.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafss: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafss.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafss: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafss.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafss: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafss.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafss: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafss.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafss: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafss.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafssasfg: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafssasfg.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafssasfg: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafssasfg.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafssasfg: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafssasfg.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafssasfg: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafssasfg.csv 
-  storage: csv 
- 
-agendassasdasfaasdasfgasasdafssasfg: 
-  path: ../agendas/agendassasdasfaasdasfgasasdafssasfg.csv 
-  storage: csv 
- 
-agenfasdagfa: 
-  path: ../agendas/agenfasdagfa.csv 
-  storage: csv 
+agenda: 
+  path: ../agendas/agenda.api 
+  storage: api 
  

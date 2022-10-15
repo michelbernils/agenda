@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'storages/api.rb'
 require 'fileutils'
 require 'byebug'
 
@@ -31,6 +32,8 @@ class ConfigManager
     case hash[@agenda_name]['storage']
     when 'csv'
       Csv.new(file: file_path)
+    when 'api'
+      Api.new
     else
       :error
     end

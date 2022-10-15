@@ -19,6 +19,12 @@ class ContactRepository
     Contacts.new(name: name, email: email)
   end
 
+  def update_contact(id, name, email)
+    storage_client.update(id, name, email)
+
+    Contacts.new(name: name, email: email)
+  end
+
   def search_contact_using_name(name)
     storage_client.search(name)
 
