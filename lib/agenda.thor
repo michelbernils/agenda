@@ -12,6 +12,9 @@ require_relative '../lib/repository/contact_repository'
 require_relative '../lib/entity/agenda'
 require_relative '../lib/entity/contact'
 
+#Discuss:
+# my start function is not working, due to the connection is already using a statci database name (the start command seems useless). 
+
 #TODO: 
 # 1) make the api call start_agenda, add_contact, update_contact, search_contact, delete_contact in MySql 
   # start_agenda: done
@@ -27,7 +30,8 @@ require_relative '../lib/entity/contact'
   # search_contact: done
   # delete_contact: done
 
-# 3) make the cli use the requested database. (right now I am using static database name on .env)  
+# 3) make the cli use the requested database. (right now I am using static database name on .env in this case agenda)  
+# 4) send the url via constructor. I already did this in one of my projects. 
 
 # CLI for the agenda.
 class CLI < Thor
@@ -40,15 +44,15 @@ class CLI < Thor
   end
   
   desc 'add AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'
-  def add_contact(agenda_name, storage_type, name, email)
+  def add_contact(agenda_name, storage_type, category, name, email)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
-    ContactRepository.new(storage_client: config_manager.storage_client).add_contact(name, email)
+    ContactRepository.new(storage_client: config_manager.storage_client).add_contact(category, name, email)
   end
 
   desc 'update AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'
-  def update_contact(agenda_name, storage_type, id, name, email)
+  def update_contact(agenda_name, storage_type, id, category, name, email)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
-    ContactRepository.new(storage_client: config_manager.storage_client).update_contact(id, name, email)
+    ContactRepository.new(storage_client: config_manager.storage_client).update_contact(id, category, name, email)
   end
 
   desc 'search AGENDA_NAME STORAGE_TYPE, NAME', 'search a contact using the contact name'

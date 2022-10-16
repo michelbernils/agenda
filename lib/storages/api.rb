@@ -15,19 +15,19 @@ class Api
       headers: {'Content-Type' => 'application/json'}
     )
 
-    response = conn.post('/create-database') do |req|
+    response = conn.post('/create') do |req|
       req.body = JSON.generate(database_name: @database_name)
     end
   end
 
-  def add(name, email)
+  def add(category, name, email)
     conn = Faraday.new(
       url: 'http://127.0.0.1:4567',
       headers: {'Content-Type' => 'application/json'}
     )
 
-    response = conn.post('/create') do |req|
-      req.body = JSON.generate(name: name, email: email)
+    response = conn.post('/agenda/create') do |req|
+      req.body = {category: "#{category}", name: "#{name}", email: "#{email}"}.to_json
     end
   end
 
@@ -37,19 +37,19 @@ class Api
       headers: {'Content-Type' => 'application/json'}
     )
 
-    response = conn.post('/search') do |req|
-      req.body = JSON.generate(name: name)
+    response = conn.post('/agenda/search') do |req|
+      req.body = {name: "#{name}"}.to_json
     end
   end
 
-  def update(id, name, email)
+  def update(id, category, name, email)
     conn = Faraday.new(
       url: 'http://127.0.0.1:4567',
       headers: {'Content-Type' => 'application/json'}
     )
 
-    response = conn.put('/update') do |req|
-      req.body = JSON.generate(id, name: name, email: email)
+    response = conn.put('/agenda/update') do |req|
+      req.body = {id: "#{id}", category: "#{category}", name: "#{name}", email: "#{email}"}.to_json
     end
   end
 
@@ -59,8 +59,8 @@ class Api
       headers: {'Content-Type' => 'application/json'}
     )
 
-    response = conn.delete('/delete') do |req|
-      req.body = JSON.generate(name: name)
+    response = conn.delete('/agenda/delete') do |req|
+      req.body = {name: "#{name}"}.to_json
     end
   end
 end

@@ -13,14 +13,14 @@ class ContactRepository
     @storage_client = storage_client
   end
 
-  def add_contact(name, email)
-    storage_client.add(name, email)
+  def add_contact(category, name, email)
+    storage_client.add(category, name, email)
 
     Contacts.new(name: name, email: email)
   end
 
-  def update_contact(id, name, email)
-    storage_client.update(id, name, email)
+  def update_contact(id, category, name, email)
+    storage_client.update(id, category, name, email)
 
     Contacts.new(name: name, email: email)
   end
