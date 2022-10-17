@@ -1,5 +1,9 @@
 # CLI
 
+### Technology used on this project:
+1. [Thor](http://whatisthor.com/)
+1. [Faraday](https://github.com/lostisland/faraday)
+
 #### This repository contains a CLI application to create agendas.
 
 #### With this application you can:
