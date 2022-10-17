@@ -12,26 +12,19 @@ require_relative '../lib/repository/contact_repository'
 require_relative '../lib/entity/agenda'
 require_relative '../lib/entity/contact'
 
-#Discuss:
-# my start function is not working, due to the connection is already using a statci database name (the start command seems useless). 
-
 #TODO: 
 # 1) make the api call start_agenda, add_contact, update_contact, search_contact, delete_contact in MySql 
-  # start_agenda: done
   # add_contact: done
-  # update_contact: not working lul
+  # update_contact: done
   # search_contact: done
   # delete_contact: done
 
 # 2) make the api call start_agenda, add_contact, update_contact, search_contact, delete_contact in Mongodb
-  # start_agenda: not_implemented
   # add_contact: done
-  # update_contact: not working lul
+  # update_contact: done
   # search_contact: done
   # delete_contact: done
 
-# 3) make the cli use the requested database. (right now I am using static database name on .env in this case agenda)  
-# 4) send the url via constructor. I already did this in one of my projects. 
 
 # CLI for the agenda.
 class CLI < Thor

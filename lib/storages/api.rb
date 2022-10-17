@@ -9,17 +9,6 @@ class Api
     @database_name = database_name
   end
 
-  def start
-    conn = Faraday.new(
-      url: 'http://127.0.0.1:4567',
-      headers: {'Content-Type' => 'application/json'}
-    )
-
-    response = conn.post('/create') do |req|
-      req.body = JSON.generate(database_name: @database_name)
-    end
-  end
-
   def add(category, name, email)
     conn = Faraday.new(
       url: 'http://127.0.0.1:4567',
