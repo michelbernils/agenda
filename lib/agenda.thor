@@ -14,10 +14,12 @@ require_relative '../lib/entity/contact'
 
 # CLI for the agenda.
 class CLI < Thor
-  desc 'start AGENDA_NAME STORAGE_TYPE', 'add headers to our csv file'
 
+  desc 'start AGENDA_NAME STORAGE_TYPE', 'add headers to our csv file'
+  option :url, :type => :string
   def start_agenda(agenda_name, storage_type)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
+    config_manager.write_file_information(options[:url]) if options[:url]
     AgendaRepository.new(storage_client: config_manager.storage_client).start
   end
   

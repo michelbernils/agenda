@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'faraday'
+require 'yaml'
 
 # All the logic for the API requests
 class Api
@@ -12,7 +13,9 @@ class Api
     :not_implemented
   end
 
-  def add(category, name, email, url)
+  def add(category, name, email)
+    hash = YAML.safe_load File.read('../config.yaml')
+    url = hash[@database_name]['server']
     conn = Faraday.new(
       url: "#{url}",
       headers: {'Content-Type' => 'application/json'}
@@ -24,8 +27,10 @@ class Api
   end
 
   def search(name)
+    hash = YAML.safe_load File.read('../config.yaml')
+    url = hash[@database_name]['server']
     conn = Faraday.new(
-      url: "#{url}:#{port}}",
+      url: "#{url}",
       headers: {'Content-Type' => 'application/json'}
     )
 
@@ -35,8 +40,10 @@ class Api
   end
 
   def update(id, category, name, email)
+    hash = YAML.safe_load File.read('../config.yaml')
+    url = hash[@database_name]['server']
     conn = Faraday.new(
-      url: "#{url}:#{port}}",
+      url: "#{url}",
       headers: {'Content-Type' => 'application/json'}
     )
 
@@ -46,8 +53,10 @@ class Api
   end
 
   def delete(name)
+    hash = YAML.safe_load File.read('../config.yaml')
+    url = hash[@database_name]['server']
     conn = Faraday.new(
-      url: "#{url}:#{port}}",
+      url: "#{url}",
       headers: {'Content-Type' => 'application/json'}
     )
 

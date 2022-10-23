@@ -1,0 +1,48 @@
+agendasss: 
+  path: ../agendas/agendasss.csv 
+  storage: csv 
+ 
+agendasssx: 
+  path: ../agendas/agendasssx.csv 
+  storage: csv 
+ 
+agendasssxss: 
+  path: ../agendas/agendasssxss.csv 
+  storage: csv 
+  URL:  
+ 
+agendasssxss: 
+  path: ../agendas/agendasssxss.api 
+  storage: api 
+  URL:  
+ 
+agendasssxss: 
+  path: ../agendas/agendasssxss.api 
+  storage: api 
+  URL:  
+ 
+agendasssxss: 
+  path: ../agendas/agendasssxss.api 
+  storage: api 
+  URL: berni 
+ 
+agendasssxss: 
+  path: ../agendas/agendasssxss.api 
+  storage: api 
+  URL: berni 
+ 
+agendasssxss: 
+  path: ../agendas/agendasssxss.api 
+  storage: api 
+  URL: bernils 
+ 
+agendasssxss: 
+  path: ../agendas/agendasssxss.csv 
+  storage: csv 
+  server: bernils 
+ 
+agendasssxssasd: 
+  path: ../agendas/agendasssxssasd.csv 
+  storage: csv 
+  server: bernils 
+ 
