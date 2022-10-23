@@ -14,7 +14,7 @@ class Csv
     directory_path = '../agendas'
     Dir.mkdir(directory_path) unless Dir.exist?(directory_path)
     CSV.open(file, 'a+') do |csv|
-      csv << %w[name email] if csv.count.eql? 0
+      csv << %w[category name email] if csv.count.eql? 0
     end
   end
 

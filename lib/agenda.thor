@@ -12,27 +12,12 @@ require_relative '../lib/repository/contact_repository'
 require_relative '../lib/entity/agenda'
 require_relative '../lib/entity/contact'
 
-#TODO: 
-# 1) make the api call start_agenda, add_contact, update_contact, search_contact, delete_contact in MySql 
-  # add_contact: done
-  # update_contact: done
-  # search_contact: done
-  # delete_contact: done
-
-# 2) make the api call start_agenda, add_contact, update_contact, search_contact, delete_contact in Mongodb
-  # add_contact: done
-  # update_contact: done
-  # search_contact: done
-  # delete_contact: done
-
-
 # CLI for the agenda.
 class CLI < Thor
   desc 'start AGENDA_NAME STORAGE_TYPE', 'add headers to our csv file'
 
   def start_agenda(agenda_name, storage_type)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
-    config_manager.write_file_information
     AgendaRepository.new(storage_client: config_manager.storage_client).start
   end
   

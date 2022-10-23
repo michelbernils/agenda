@@ -4,14 +4,17 @@ require 'faraday'
 
 # All the logic for the API requests
 class Api
-
   def initialize(database_name:)
     @database_name = database_name
   end
 
-  def add(category, name, email)
+  def start
+    :not_implemented
+  end
+
+  def add(category, name, email, url)
     conn = Faraday.new(
-      url: 'http://127.0.0.1:4567',
+      url: "#{url}",
       headers: {'Content-Type' => 'application/json'}
     )
 
@@ -22,7 +25,7 @@ class Api
 
   def search(name)
     conn = Faraday.new(
-      url: 'http://127.0.0.1:4567',
+      url: "#{url}:#{port}}",
       headers: {'Content-Type' => 'application/json'}
     )
 
@@ -33,7 +36,7 @@ class Api
 
   def update(id, category, name, email)
     conn = Faraday.new(
-      url: 'http://127.0.0.1:4567',
+      url: "#{url}:#{port}}",
       headers: {'Content-Type' => 'application/json'}
     )
 
@@ -44,7 +47,7 @@ class Api
 
   def delete(name)
     conn = Faraday.new(
-      url: 'http://127.0.0.1:4567',
+      url: "#{url}:#{port}}",
       headers: {'Content-Type' => 'application/json'}
     )
 

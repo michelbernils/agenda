@@ -13,7 +13,7 @@ class ConfigManager
     @agenda_name = agenda_name
     @storage_type = storage_type
   end
-
+  
   def write_file_information
     File.new(yaml_file_path, 'a+') unless File.exist?(yaml_file_path)
 
@@ -29,7 +29,7 @@ class ConfigManager
   def storage_client
     file_path = "../agendas/#{agenda_name}.#{storage_type}"
     hash = YAML.safe_load File.read(@yaml_file_path)
-    case hash[@agenda_name]['storage']
+    case hash[agenda_name]['storage']
     when 'csv'
       Csv.new(file: file_path)
     when 'api'

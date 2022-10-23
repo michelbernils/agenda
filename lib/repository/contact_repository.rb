@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../lib/entity/contact'
+require_relative '../../lib/config_manager'
 
 require 'csv'
 load('../lib/agenda.thor')
