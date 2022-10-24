@@ -2,6 +2,7 @@
 
 require 'faraday'
 require 'yaml'
+require 'byebug'
 
 # All the logic for the API requests
 class Api
@@ -20,7 +21,6 @@ class Api
       url: "#{url}",
       headers: {'Content-Type' => 'application/json'}
     )
-
     response = conn.post('/agenda/create') do |req|
       req.body = {category: "#{category}", name: "#{name}", email: "#{email}"}.to_json
     end

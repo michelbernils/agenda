@@ -45,4 +45,14 @@ agendasssxssasd:
   path: ../agendas/agendasssxssasd.csv 
   storage: csv 
   server: bernils 
+
+agendasssxssasd: 
+  path: ../agendas/agendasssxssasd.csv 
+  storage: csv 
+  server: bernils 
+
+agenda:
+  path: ../agendas/agenda.csv 
+  storage: api 
+  server: http://127.0.0.1:4567 
  
