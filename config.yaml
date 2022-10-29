@@ -56,3 +56,8 @@ agenda:
   storage: api 
   server: http://127.0.0.1:4567 
  
+agendax: 
+  path: ../agendas/agendax.csv 
+  storage: csv 
+  server: url 
+ 

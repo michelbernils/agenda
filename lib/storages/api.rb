@@ -21,12 +21,12 @@ class Api
       url: "#{url}",
       headers: {'Content-Type' => 'application/json'}
     )
-    response = conn.post('/agenda/create') do |req|
+    response = conn.post('/user') do |req|
       req.body = {category: "#{category}", name: "#{name}", email: "#{email}"}.to_json
     end
   end
 
-  def search(name)
+  def search(id)
     hash = YAML.safe_load File.read('../config.yaml')
     url = hash[@database_name]['server']
     conn = Faraday.new(
@@ -34,8 +34,8 @@ class Api
       headers: {'Content-Type' => 'application/json'}
     )
 
-    response = conn.post('/agenda/search') do |req|
-      req.body = {name: "#{name}"}.to_json
+    response = conn.post("/user/#{id}") do |req|
+      req.body = {id: "#{id}"}.to_json
     end
   end
 
@@ -47,12 +47,12 @@ class Api
       headers: {'Content-Type' => 'application/json'}
     )
 
-    response = conn.put('/agenda/update') do |req|
-      req.body = {id: "#{id}", category: "#{category}", name: "#{name}", email: "#{email}"}.to_json
+    response = conn.put("/user/#{id}") do |req|
+      req.body = {category: "#{category}", name: "#{name}", email: "#{email}"}.to_json
     end
   end
 
-  def delete(name)
+  def delete(id)
     hash = YAML.safe_load File.read('../config.yaml')
     url = hash[@database_name]['server']
     conn = Faraday.new(
@@ -60,8 +60,8 @@ class Api
       headers: {'Content-Type' => 'application/json'}
     )
 
-    response = conn.delete('/agenda/delete') do |req|
-      req.body = {name: "#{name}"}.to_json
+    response = conn.delete("/user/#{id}") do |req|
+      req.body = {id: "#{id}"}.to_json
     end
   end
 end
