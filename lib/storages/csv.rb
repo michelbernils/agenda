@@ -25,12 +25,7 @@ class Csv
   end
 
   def update(id, category, name, email)
-    csv_parsed = CSV.parse(File.read(file), headers: true)
-    if csv_parsed.find { |row| row['id'] == id  }
-      csv << [category, name, email]
-    else
-      p 'User not found'
-    end
+    :not_implemented
   end
 
   def search(id)
