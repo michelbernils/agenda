@@ -23,27 +23,27 @@ class CLI < Thor
     AgendaRepository.new(storage_client: config_manager.storage_client).start
   end
   
-  desc 'add AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'
+  desc 'add AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to csv or api'
   def add_contact(agenda_name, storage_type, category, name, email)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
     ContactRepository.new(storage_client: config_manager.storage_client).add_contact(category, name, email)
   end
 
-  desc 'update AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to our csv file'
+  desc 'update AGENDA_NAME STORAGE_TYPE, NAME, EMAIL', 'add contacts to csv or api'
   def update_contact(agenda_name, storage_type, id, category, name, email)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
     ContactRepository.new(storage_client: config_manager.storage_client).update_contact(id, category, name, email)
   end
 
-  desc 'search AGENDA_NAME STORAGE_TYPE, NAME', 'search a contact using the contact name'
-  def search_contact(agenda_name, storage_type, name)
+  desc 'search AGENDA_NAME STORAGE_TYPE, ID', 'search a contact id'
+  def search_contact(agenda_name, storage_type, id)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
-    ContactRepository.new(storage_client: config_manager.storage_client).search_contact_using_name(name)
+    ContactRepository.new(storage_client: config_manager.storage_client).search_contact(id)
   end
 
-  desc 'delete NAME', 'deleta a contact using the contact name'
-  def delete_contact(agenda_name, storage_type, name)
+  desc 'delete AGENDA_NAME, STORAGE_TYPE, ID', 'deleta a contact id'
+  def delete_contact(agenda_name, storage_type, id)
     config_manager = ConfigManager.new(agenda_name: agenda_name, storage_type: storage_type)
-    ContactRepository.new(storage_client: config_manager.storage_client).delete_contact_using_name(name)
+    ContactRepository.new(storage_client: config_manager.storage_client).delete_contact(id)
   end
 end

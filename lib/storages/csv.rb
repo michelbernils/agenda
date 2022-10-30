@@ -14,29 +14,39 @@ class Csv
     directory_path = '../agendas'
     Dir.mkdir(directory_path) unless Dir.exist?(directory_path)
     CSV.open(file, 'a+') do |csv|
-      csv << %w[category name email] if csv.count.eql? 0
+      csv << %w[id category name email] if csv.count.eql? 0
     end
   end
 
-  def add(*row)
-    csv << row
-
+  def add(category, name, email)
+    id = CSV.read(file).count
+    csv << [id, category, name, email]
     csv.flush
   end
 
-  def search(name)
+  def update(id, category, name, email)
     csv_parsed = CSV.parse(File.read(file), headers: true)
-    if csv_parsed.find { |row| row['name'] == name }
-      puts 'Usuario encontrado'
+    if csv_parsed.find { |row| row['id'] == id  }
+      csv << [category, name, email]
+    else
+      p 'User not found'
+    end
+  end
+
+  def search(id)
+    csv_parsed = CSV.parse(File.read(file), headers: true)
+    if csv_parsed.find { |row| row['id'] == id  }
+      puts 'User not found'
     else
       puts 'User not found'
     end
   end
 
-  def delete(name)
+  def delete(id)    
     table = CSV.table(file)
     table.delete_if do |row|
-      row[:name] == name
+      row[:id] == id
+      p 'User deleted'
     end
     File.open(file, 'w') do |f|
       f.write(table.to_csv)

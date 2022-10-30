@@ -26,13 +26,11 @@ class ContactRepository
     Contacts.new(name: name, email: email)
   end
 
-  def search_contact_using_name(name)
-    storage_client.search(name)
-
-    Contacts.new(name: name)
+  def search_contact(id)
+    storage_client.search(id)
   end
 
-  def delete_contact_using_name(name)
-    storage_client.delete(name)
+  def delete_contact(id)
+    storage_client.delete(id)
   end
 end
