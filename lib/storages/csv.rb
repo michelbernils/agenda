@@ -43,7 +43,7 @@ class Csv
   def search(id)
     csv_parsed = CSV.parse(File.read(file), headers: true)
     if csv_parsed.find { |row| row['id'] == id  }
-      puts 'User not found'
+      puts 'User found'
     else
       puts 'User not found'
     end
@@ -52,8 +52,7 @@ class Csv
   def delete(id)    
     table = CSV.table(file)
     table.delete_if do |row|
-      row[:id] == id
-      p 'User deleted'
+      row[:id] == id.to_i
     end
     File.open(file, 'w') do |f|
       f.write(table.to_csv)

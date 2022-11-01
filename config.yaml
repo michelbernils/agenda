@@ -1,5 +1,6 @@
+
 agenda: 
-  path: ../agendas/agenda.csv 
-  storage: csv 
-  server: url 
+  path: ../agendas/agenda.api 
+  storage: api 
+  server: http://127.0.0.1:4567 
  
