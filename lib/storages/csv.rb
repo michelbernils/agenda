@@ -25,7 +25,19 @@ class Csv
   end
 
   def update(id, category, name, email)
-    :not_implemented
+    CSV.open('new_data.csv', 'w+', write_headers: true, headers: %w[id category name email]) do |new_csv|
+      CSV.foreach(file, headers: true, header_converters: :symbol, converters: :all) do |row|
+        if row[:id] == id.to_i
+          p 'chegou aqui'
+          row[:category] = category
+          row[:name] = name
+          row[:email] = email
+        end
+        new_csv << row
+      end
+    end
+    File.delete(file)
+    File.rename("new_data.csv", file)
   end
 
   def search(id)
